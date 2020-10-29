@@ -2,7 +2,7 @@
 
 # Benchmarking Graph Neural Networks
 
-<br>
+Benchmarking GNNs for genome enabled prediction.
 
 ## Updates
 
