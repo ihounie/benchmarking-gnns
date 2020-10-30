@@ -11,15 +11,13 @@ import torch.utils.data
 import time
 import os
 import numpy as np
-<<<<<<< HEAD
+
 #from progressbar import progressbar
 from tqdm import tqdm
 import csv
 from scipy.sparse import coo_matrix
-=======
 
 import csv
->>>>>>> b22de18d594b91c11a1b339f6b81cd3d27d0e221
 
 import dgl
 
@@ -50,7 +48,6 @@ class YeastDGL(torch.utils.data.Dataset):
         
     def _prepare(self):
         print("preparing %d graphs for the %s set..." % (self.num_graphs, self.split.upper()))
-<<<<<<< HEAD
         adj = torch.tensor(self.data['GSO'])
         edge_list = (adj != 0).nonzero()  # converting adj matrix to edge_list
         edge_idxs_in_adj = edge_list.split(1, dim=1)
@@ -66,25 +63,7 @@ class YeastDGL(torch.utils.data.Dataset):
             node_features = cow.long()
             g = dgl.from_scipy(sparse_adj)
             g.ndata['feat'] = node_features
-            g.edata['feat'] = edge_features            
-=======
-        adj = self.data['GSO']
-        edge_list = (adj != 0).nonzero()  # converting adj matrix to edge_list
-        edge_idxs_in_adj = edge_list.split(1, dim=1)
-        edge_features = adj[edge_idxs_in_adj].reshape(-1).long() 
-        
-        for cow, feno in zip(self.data['X'], self.data['y']):
-            node_features = cow.long()
-            # Create the DGL Graph
-            g = dgl.DGLGraph()
-            g.add_nodes(adj.shape[0])
-            g.ndata['feat'] = node_features
-            
-            for src, dst in edge_list:
-                g.add_edges(src.item(), dst.item())
             g.edata['feat'] = edge_features
-            
->>>>>>> b22de18d594b91c11a1b339f6b81cd3d27d0e221
             self.graph_lists.append(g)
             self.graph_labels.append(feno)
         
