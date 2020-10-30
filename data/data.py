@@ -8,6 +8,7 @@ from data.SBMs import SBMsDataset
 from data.TSP import TSPDataset
 from data.COLLAB import COLLABDataset
 from data.CSL import CSLDataset
+from data.yeast import YeastDataset
 
 
 def LoadData(DATASET_NAME):

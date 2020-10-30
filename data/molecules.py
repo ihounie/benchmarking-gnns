@@ -58,9 +58,12 @@ class MoleculeDGL(torch.utils.data.Dataset):
             node_features = molecule['atom_type'].long()
             
             adj = molecule['bond_type']
+            #print(adj)
             edge_list = (adj != 0).nonzero()  # converting adj matrix to edge_list
-            
+            #print(edge_list)
             edge_idxs_in_adj = edge_list.split(1, dim=1)
+            #print(edge_idxs_in_adj)
+            #assert(0)
             edge_features = adj[edge_idxs_in_adj].reshape(-1).long()
             
             # Create the DGL Graph
